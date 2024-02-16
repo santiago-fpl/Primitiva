@@ -2,12 +2,12 @@ import java.util.Scanner;
 
 /**
  * Programa de simulació de La Primitiva
- * @auhor //TODO: Nom Alumne
+ * @author Santiago, Oriol
  * @version 1.0
- * @date //TODO: data
+ * @date 16/02/2024
  */
 //TODO: Fer refractor per canviar el nom de la classe
-public class CognomNom_Primitiva {
+public class FernandezPedreraSantiagoFontcubertaOriol_Primitiva {
     /**
      * Mètode main executable
      * @param args
@@ -22,7 +22,12 @@ public class CognomNom_Primitiva {
      * @since 1.0
      */
     private static void menuPrincipal(){
+        int opcio;
+
         System.out.println("***** PRIMITIVA ******");
+        System.out.println("Loteria \n1.Hacer apuesta \n2.Girar el bombo \n3.Juego nuevo \n4.Salir ");
+        opcio = llegirInt(": ", 1, 4);
+
 
         int[] aposta = introduirAposta();
         int[] combinacioGuanyadora = calcularCombinacioGuanyadora();
@@ -62,9 +67,32 @@ public class CognomNom_Primitiva {
      * @since 1.0
      */
     private static int[] calcularCombinacioGuanyadora(){
-        int[] combinacio = null;
+
+        int[] combinacio = new int[7];
 
         //TODO: Fer el codi del mètode
+        for(int i=0; i<=6; i++){
+            if(i!=6){
+                boolean esDiferent = true;
+                do {
+                    int random = (int)Math.floor(Math.random()*48+1);
+                    for(int x=0; x<i ;x++){
+                        if(random != combinacio[x]){
+                            esDiferent = true;
+                        }
+                        else{
+                            esDiferent = false;
+                            break;
+                        }
+                    }
+                    combinacio[i] = random;
+                } while (!esDiferent);
+
+            } else{
+                int random = (int)Math.floor(Math.random()*9);
+                combinacio[i] = random;
+            }
+        }
 
         return combinacio;
     }
