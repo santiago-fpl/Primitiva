@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.Scanner;
 
 /**
@@ -28,6 +29,10 @@ public class FernandezPedreraSantiagoFontcubertaOriol_Primitiva {
         int[] combinacioGuanyadora = calcularCombinacioGuanyadora();
         int premi;
 
+        for (int i=0; i<7; i++){
+            System.out.println(aposta[i]);
+        }
+
         if (combinacioGuanyadora != null) {
             System.out.println("La combinació ganadora és: ");
 
@@ -50,9 +55,22 @@ public class FernandezPedreraSantiagoFontcubertaOriol_Primitiva {
     private static int[] introduirAposta(){
         System.out.println("Introdueix la teva aposta: ");
         int[] aposta = new int[7];
+        boolean rep = true;
 
-        for (int i = 0; i<6; i++){
-            aposta[i] = llegirInt("Introdueix el número " + (i+1) + ": ", 1, 49);
+        for (int i=0; i<6; i++){
+            do {
+                aposta[i] = llegirInt("Introdueix el número " + (i+1) + ": ", 1, 49);
+                if (i>0){
+                    for (int j=0; j<i; j++){
+                        if (aposta[i] == aposta[j]){
+                            rep = false;
+                            break;
+                        }else{
+                            rep = true;
+                        }
+                    }
+                }
+            }while (!rep);
         }
 
         aposta[6] = llegirInt("Introdueix el número del reintegrament: " , 0, 9);
