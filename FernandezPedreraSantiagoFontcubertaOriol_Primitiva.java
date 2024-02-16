@@ -28,23 +28,34 @@ public class FernandezPedreraSantiagoFontcubertaOriol_Primitiva {
         System.out.println("Loteria \n1.Hacer apuesta \n2.Girar el bombo \n3.Juego nuevo \n4.Salir ");
         opcio = llegirInt(": ", 1, 4);
 
-
-        int[] aposta = introduirAposta();
-        int[] combinacioGuanyadora = calcularCombinacioGuanyadora();
+        int[] aposta;
+        int[] combinacioGuanyadora;
         int premi;
 
-        if (combinacioGuanyadora != null) {
-            System.out.println("La combinació ganadora és: ");
+        switch( opcio ){
+            case 1:
+                aposta = introduirAposta();
+                break;
+            case 2:
+                combinacioGuanyadora = calcularCombinacioGuanyadora();
+                if (combinacioGuanyadora != null) {
+                    System.out.println("La combinació ganadora és: ");
 
-            for (int i = 0; i < combinacioGuanyadora.length - 1; i++) {
-                System.out.print(combinacioGuanyadora[i] + " ");
-            }
+                    for (int i = 0; i < combinacioGuanyadora.length - 1; i++) {
+                        System.out.print(combinacioGuanyadora[i] + " ");
+                    }
 
-            System.out.println("Reintegrament " + combinacioGuanyadora[combinacioGuanyadora.length - 1]);
+                    System.out.println("Reintegrament " + combinacioGuanyadora[combinacioGuanyadora.length - 1]);
+                }
+                break;
+            case 3:
+                System.out.println("TODO");
+                break;
+            case 4:
+                break;
         }
 
-        premi = comprovarEncerts(aposta, combinacioGuanyadora);
-        System.out.println("El teu premi és: "+premi+" €");
+
     }
 
     /**
