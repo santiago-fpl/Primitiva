@@ -29,9 +29,6 @@ public class FernandezPedreraSantiagoFontcubertaOriol_Primitiva {
         int[] combinacioGuanyadora = calcularCombinacioGuanyadora();
         int premi;
 
-        for (int i=0; i<7; i++){
-            System.out.println(aposta[i]);
-        }
 
         if (combinacioGuanyadora != null) {
             System.out.println("La combinació ganadora és: ");
@@ -104,13 +101,25 @@ public class FernandezPedreraSantiagoFontcubertaOriol_Primitiva {
         boolean reintregrament = false;
 
         //Comprobar encerts a la combinació
-        //TODO: Fer el codi del mètode
+        for (int i=0; i<6; i++){
+            for (int j=0; j<6; j++){
+                if (aposta[i] == combinacioGuanyadora[j]){
+                    encerts++;
+                }
+            }
+        }
 
         //Comprobar reintegrament
-        //TODO: Fer el codi del mètode
+        if (aposta[6] == combinacioGuanyadora[6]){
+            reintregrament = true;
+        }
 
         //Calcular premi
-        //TODO: Fer el codi del mètode
+        premi = encerts * 20;
+
+        if (reintregrament){
+            premi += 6;
+        }
 
         return premi;
     }
