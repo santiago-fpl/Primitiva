@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 /**
  * Programa de simulació de La Primitiva
- * @auhor //TODO: Nom Alumne
+ * @author Santiago, Oriol
  * @version 1.0
- * @date //TODO: data
+ * @date 16/02/2024
  */
 //TODO: Fer refractor per canviar el nom de la classe
 public class FernandezPedreraSantiagoFontcubertaOriol_Primitiva {
@@ -23,25 +23,41 @@ public class FernandezPedreraSantiagoFontcubertaOriol_Primitiva {
      * @since 1.0
      */
     private static void menuPrincipal(){
-        System.out.println("***** PRIMITIVA ******");
+        int opcio;
 
-        int[] aposta = introduirAposta();
-        int[] combinacioGuanyadora = calcularCombinacioGuanyadora();
+        int[] aposta = new int[7];
+        int[] combinacioGuanyadora;
         int premi;
 
+        do{
+            System.out.println("***** PRIMITIVA ******");
+            System.out.println("Loteria \n1.Hacer apuesta \n2.Girar el bombo \n3.Juego nuevo \n4.Salir ");
+            opcio = llegirInt(": ", 1, 4);
 
-        if (combinacioGuanyadora != null) {
-            System.out.println("La combinació ganadora és: ");
-
-            for (int i = 0; i < combinacioGuanyadora.length - 1; i++) {
-                System.out.print(combinacioGuanyadora[i] + " ");
+            switch( opcio ){
+                case 1:
+                    aposta = introduirAposta();
+                    break;
+                case 2:
+                    combinacioGuanyadora = calcularCombinacioGuanyadora();
+                    if (combinacioGuanyadora != null) {
+                        System.out.println("La combinació ganadora és: ");
+                        for (int i = 0; i < combinacioGuanyadora.length - 1; i++) {
+                            System.out.print(combinacioGuanyadora[i] + " ");
+                        }
+                        System.out.println("Reintegrament " + combinacioGuanyadora[combinacioGuanyadora.length - 1]);
+                    }
+                    premi = comprovarEncerts(aposta, combinacioGuanyadora);
+                    System.out.println(premi);
+                    break;
+                case 3:
+                    System.out.println("TODO");
+                    break;
+                case 4:
+                    break;
             }
+        } while (opcio != 4);
 
-            System.out.println("Reintegrament " + combinacioGuanyadora[combinacioGuanyadora.length - 1]);
-        }
-
-        premi = comprovarEncerts(aposta, combinacioGuanyadora);
-        System.out.println("El teu premi és: "+premi+" €");
     }
 
     /**
@@ -81,9 +97,32 @@ public class FernandezPedreraSantiagoFontcubertaOriol_Primitiva {
      * @since 1.0
      */
     private static int[] calcularCombinacioGuanyadora(){
-        int[] combinacio = null;
+
+        int[] combinacio = new int[7];
 
         //TODO: Fer el codi del mètode
+        for(int i=0; i<7; i++){
+            if(i!=6){
+                boolean esDiferent = true;
+                do {
+                    int random = (int)Math.floor(Math.random()*48+1);
+                    for(int x=0; x<i ;x++){
+                        if(random != combinacio[x]){
+                            esDiferent = true;
+                        }
+                        else{
+                            esDiferent = false;
+                            break;
+                        }
+                    }
+                    combinacio[i] = random;
+                } while (!esDiferent);
+
+            } else{
+                int random = (int)Math.floor(Math.random()*9);
+                combinacio[i] = random;
+            }
+        }
 
         return combinacio;
     }
