@@ -7,7 +7,7 @@ import java.util.Scanner;
  * @date //TODO: data
  */
 //TODO: Fer refractor per canviar el nom de la classe
-public class CognomNom_Primitiva {
+public class FernandezPedreraSantiagoFontcubertaOriol_Primitiva {
     /**
      * Mètode main executable
      * @param args
@@ -49,9 +49,13 @@ public class CognomNom_Primitiva {
      */
     private static int[] introduirAposta(){
         System.out.println("Introdueix la teva aposta: ");
-        int[] aposta = null;
+        int[] aposta = new int[7];
 
-        //TODO: Fer el codi del mètode
+        for (int i = 0; i<6; i++){
+            aposta[i] = llegirInt("Introdueix el número " + (i+1) + ": ", 1, 49);
+        }
+
+        aposta[6] = llegirInt("Introdueix el número del reintegrament: " , 0, 9);
 
         return aposta;
     }
